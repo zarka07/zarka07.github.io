@@ -1,16 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+ 
+  <div >
+    <router-view @showUser="toUser"/>
+  </div>
+  <!-- <div v-if="!store.email"><AuthorizationItem/></div>
+  <div v-else><UserItem/></div> -->
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import { UserStore } from '@/stores/UserStore'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    
+  },
+  setup(){
+    const store = UserStore()
+    return{
+      store
+    }
+  },
+  methods:{
+    toUser(){
+      this.$router.push('/user')
+    }
   }
+  
 }
 </script>
 
@@ -20,7 +38,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #b7d842;
+ 
 }
 </style>
