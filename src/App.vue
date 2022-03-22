@@ -1,21 +1,23 @@
 <template>
- 
   <div >
-    <router-view @showUser="toUser"/>
+    <router-view @showUser="toUser">
+      <div v-if="!store.email"><AuthorizationItem/></div>
+      <div v-else><UserItem/></div>
+    </router-view>
   </div>
-  <!-- <div v-if="!store.email"><AuthorizationItem/></div>
-  <div v-else><UserItem/></div> -->
+  
   
 </template>
 
 <script>
 
-import { UserStore } from '@/stores/UserStore'
-
+import { UserStore } from '@/stores/UserStore';
+import AuthorizationItem from '@/views/Authorization.vue';
+import UserItem from '@/views/User.vue'
 export default {
   name: 'App',
   components: {
-    
+    AuthorizationItem, UserItem,
   },
   setup(){
     const store = UserStore()
@@ -38,7 +40,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #b7d842;
+  color: #050505;
  
 }
 </style>

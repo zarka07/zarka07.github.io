@@ -18,15 +18,14 @@ export const UserStore = defineStore('auth', {
             this.email = '',
             this.password = ''
         },
-        addUser(email, password, username){
-            this.username = username,
-            this.email = email,
-            this.password = password
+        addUser(formData){
+            this.username = formData.username,
+            this.email = formData.email,
+            this.password = formData.password
         },
         signIn(formData){
             this.email = formData.email,
             this.password = formData.password
-            //console.log(this.email)
         }
     }
 })

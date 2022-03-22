@@ -6,82 +6,78 @@
                     <div class="form-items">
                         <h3>Sign Up</h3>
                         <form class="requires-validation" novalidate>
-
                             <div class="col-md-12">
                                 <div :class="{ error: v$.username.$errors.length }">
-                               <input class="form-control" 
-                               type="text" 
-                               v-model="username" 
-                               placeholder="Username" 
-                               autocomplete ="username"
-                               >
-                               <div class="input-errors" v-for="error of v$.username.$errors" :key="error.$uid">
-                                    <div style="color:red" class="error-msg">{{ error.$message }}</div>
-                                </div>
+                                    <input class="form-control" 
+                                    type="text" 
+                                    v-model="username" 
+                                    placeholder="Username" 
+                                    autocomplete ="username"
+                                    >
+                                        <div class="input-errors" v-for="error of v$.username.$errors" :key="error.$uid">
+                                            <div style="color:red" class="error-msg">{{ error.$message }}</div>
+                                        </div>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div :class="{ error: v$.email.$errors.length }">
-                                <input class="form-control" 
-                                type="email" 
-                                v-model="email" 
-                                placeholder="E-mail" 
-                                autocomplete ="email"
-                                >
-                                 <div class="input-errors" v-for="error of v$.email.$errors" :key="error.$uid">
-                                    <div style="color:red" class="error-msg">{{ error.$message }}</div>
-                                </div>
+                                    <input class="form-control" 
+                                        type="email" 
+                                        v-model="email" 
+                                        placeholder="E-mail" 
+                                        autocomplete ="email"
+                                    >
+                                    <div class="input-errors" v-for="error of v$.email.$errors" :key="error.$uid">
+                                        <div style="color:red" class="error-msg">{{ error.$message }}</div>
+                                    </div>
                                 </div>
                             </div>
 
                            <div class="col-md-12">
                                 <select class="form-select mt-3" required>
-                                      <option selected disabled value="">Gender</option>
-                                      <option value="jweb">Male</option>
-                                      <option value="sweb">Femail</option>
+                                    <option selected disabled value="">Gender</option>
+                                    <option value="jweb">Male</option>
+                                    <option value="sweb">Femail</option>
                                </select>
-                                
                            </div>
-
 
                            <div class="col-md-12">
                                <div :class="{ error: v$.password.$errors.length }">
-                              <input class="form-control" 
-                              type="password" 
-                              v-model="password" 
-                              placeholder="Password" 
-                              autocomplete ="new-password" 
-                              >
-                              <div class="input-errors" v-for="error of v$.password.$errors" :key="error.$uid">
-                                    <div style="color:red" class="error-msg">{{ error.$message }}</div>
+                                    <input class="form-control" 
+                                        type="password" 
+                                        v-model="password" 
+                                        placeholder="Password" 
+                                        autocomplete ="new-password" 
+                                    >
+                                    <div class="input-errors" v-for="error of v$.password.$errors" :key="error.$uid">
+                                        <div style="color:red" class="error-msg">{{ error.$message }}</div>
+                                    </div>
                                 </div>
-                               </div>
-                           </div>
-
-                        <div class="form-check">
-                            <div :class="{ error: v$.agree.$errors.length }">
-                            <input class="form-check-input" 
-                                type="checkbox" 
-                                v-model="agree" 
-                                @change="v$.agree.$touch()"
-                            >
-                           
-                          <label class="form-check-label">I confirm that all data are correct</label>
                             </div>
-                        </div>
-                  
 
+                            <div class="form-check">
+                                <div :class="{ error: v$.agree.$errors.length }">
+                                    <input class="form-check-input" 
+                                        type="checkbox" 
+                                        v-model="agree" 
+                                        @change="v$.agree.$touch()"
+                                    >
+                                    <label class="form-check-label">I confirm that all data are correct</label>
+                                </div>
+                            </div>
                             <div class="form-button mt-3">
                                 <button type="submit" 
                                     @click.prevent="signUp" 
-                                    class="btn btn-success">Sign Up</button>
+                                    class="btn btn-success">Sign Up
+                                </button>
                             </div>
-                            <div class="form-button mt-3">
+                            <div class="form-button mt-3 account">
                                 Already have an account?
                                 <button type="submit" 
                                     @click.prevent="signIn" 
-                                    class="btn btn-primary">Sign In</button>
+                                    class="btn account btn-link">Sign In
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -135,10 +131,8 @@ export default {
                 username: this.username,
             }
             try {
-                
-                this.mainStore.signIn(formData)
+                this.mainStore.addUser(formData)
                 this.$emit('showUser')
-                
             } catch (e) {
                 console.log(e)
             }
@@ -151,3 +145,9 @@ export default {
     
 }
 </script>
+
+<style scoped>
+    .account{
+        color:gold;
+    }
+</style>

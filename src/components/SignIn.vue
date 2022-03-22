@@ -1,6 +1,5 @@
 <template>
     <div class="form-body">
-      <!-- sign-in form -->
       <div >
         <div class="row">
             <div class="form-holder">
@@ -37,7 +36,9 @@
                                </div>
                            </div>
 
-                
+                            <div class="form-button mt-3">
+                                <button type="button" @click.prevent="$emit('back')" class="btn btn-primary">back</button>
+                            </div>
                             <div class="form-button mt-3">
                                 <button type="submit" @click.prevent="signIn" class="btn btn-success">Sign in</button>
                             </div>
@@ -77,9 +78,14 @@ export default {
         }
         
     },
-    emits: ['showUser'],
+    emits: ['showUser', 'back'],
     methods:{
+      
     async signIn(){
+      if(this.v$.$invalid){
+                this.v$.$touch()
+                return
+            }
       const isFormCorrect = await this.v$.$validate()
       if(!isFormCorrect) return
       const formData = {

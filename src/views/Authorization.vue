@@ -1,23 +1,72 @@
 <template>
   <div >
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
-        
-      <component @sign-in="signIn" @showUser="$emit('showUser')" v-if="selected" :is="selected"></component>
-      
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-xs-6 col-md-6 left-part">
+             <component 
+              @sign-in="signIn" 
+              @back="back"
+              @showUser="$emit('showUser')" 
+              v-if="selected" 
+              :is="selected">
+            </component>
+          </div>
+          <div class="col-md-6 ">
+            <div class="row">
+              <div class="col-md-12" >
+                <h2 class="title">Lorem Ipsum</h2>
+                <h4 class="subtitle">
+                  "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+                </h4>
+                <h6 class="title-description">
+                  "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+                </h6>
+              </div>
+              <div class="col-md-6">
+                <div class="background" style="color:red; order: 3"></div>
+              </div>
+              <div class="col-md-6">
+                <div class="article" v-for="article in articles" :key="article.id">
+                  <h5>{{article.title}}</h5>
+                  <small>{{article.description}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-md-12" style="padding:0">
+            <div class="bg-dark text-center text-white">
+              <div class="container p-4 pb-0">
+                <section class="mb-4">
+                  <a class="btn btn-outline-light btn-floating m-1" href="google.com" role="button"
+                    ><i class="bi bi-google"></i></a>
+                  <a class="btn btn-outline-light btn-floating m-1" href="instagram.com" role="button"
+                    ><i class="bi bi-instagram"></i></a>
+                  <a class="btn btn-outline-light btn-floating m-1" href="www.linkedin.com/in/сергей-тарасов-63ba90203/" role="button"
+                    ><i class="bi bi-linkedin"></i></a>
+                  <a class="btn btn-outline-light btn-floating m-1" href="github.com/zarka07" role="button"
+                    ><i class="bi bi-github"></i></a>
+                </section>
+            </div>
+            <div class="text-center p-3" style="background-color: #152733;">
+              © 2022 Copyright:
+              <a class="text-white" href="mailto:zarka08@gmail.com">zarka08@gmail.com</a>
+            </div>
+        </div>
+        </div>
+      </div>
     </div>
-    <footer class="footer">
-          footer
-    </footer>
+
   </div> 
 </template>
 
 <script>
 //import { storeToRefs } from 'pinia'
 
-
 import SignUp from '@/components/SignUp.vue';
 import SignIn from '@/components/SignIn.vue';
-
+import axios from 'axios'
 export default{
   components: { 'signup': SignUp , 'signin': SignIn },
     name: 'AuthorizationItem',
@@ -26,6 +75,7 @@ export default{
         return{
           items: [ 'signup', 'signin' ],
           selected: 'signup',
+          articles:[],
         } 
     },
     computed: {
@@ -34,14 +84,22 @@ export default{
           }
         },
     methods:{
+      back(){
+        if(this.selected == 'signin'){
+              this.selected = 'signup'
+            }
+      },
        signIn(){
-         
          if(this.selected == 'signup'){
               this.selected = 'signin'
             }
        },
-       
-    }
+    },
+    created() {
+    axios.get('/articles.json').then(response => {
+      this.articles = response.data.articles;
+    });
+  }
 }
 </script>
 <style>
@@ -69,7 +127,7 @@ html, .form-body {
       justify-content: center;
       align-items: center;
       text-align: center;
-      min-height: 80vh;
+      /* min-height: 80vh; */
 }
 
 .form-holder .form-content {
@@ -84,7 +142,7 @@ html, .form-body {
     -webkit-justify-content: center;
     -webkit-align-items: center;
     align-items: center;
-    padding: 60px;
+    margin: 5px 0 5px 0;
 }
 
 .form-content .form-items {
@@ -92,7 +150,7 @@ html, .form-body {
     padding: 40px;
     display: inline-block;
     width: 100%;
-    min-width: 440px;
+    min-width: 375px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -194,6 +252,50 @@ html, .form-body {
 
 .valid-feedback{
    color: #2acc80;
+}
+
+.left-part{
+  padding: 0;
+}
+
+.background{
+  background-image: url('@/assets/right-part-bckgrnd.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* background-attachment: fixed; */
+  background-size: cover;
+  background-color: #a7a5a5;
+  /* width: 200px; */
+  height:30%;
+}
+
+@media screen and (max-width: 576px) {
+
+.background {
+    display: none;
+}
+}
+
+.lorem{
+  color:#20240d
+}
+
+.lorem-img{
+  background-image: url('@/assets/lorem-img.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* background-attachment: fixed; */
+  background-size: cover;
+  background-color: #ced114;
+}
+
+.border{
+  border: 4px double black;
+}
+
+.article{
+  border: 2px dotted black;
+  margin-bottom: 3px;
 }
 
 .footer{
