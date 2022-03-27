@@ -2,7 +2,7 @@
   <div >
     <div class="container-fluid">
         <div class="row">
-          <div class="col-xs-6 col-md-6 left-part">
+          <div class="col-xs-12 col-md-12 form">
              <component 
               @sign-in="signIn" 
               @back="back"
@@ -11,51 +11,9 @@
               :is="selected">
             </component>
           </div>
-          <div class="col-md-6 ">
-            <div class="row">
-              <div class="col-md-12" >
-                <h2 class="title">Lorem Ipsum</h2>
-                <h4 class="subtitle">
-                  "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-                </h4>
-                <h6 class="title-description">
-                  "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
-                </h6>
-              </div>
-              <div class="col-md-6">
-                <div class="background" style="color:red; order: 3"></div>
-              </div>
-              <div class="col-md-6">
-                <div class="article" v-for="article in articles" :key="article.id">
-                  <h5>{{article.title}}</h5>
-                  <small>{{article.description}}</small>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
-      <div class="row">
-        <div class="col-md-12" style="padding:0">
-            <div class="bg-dark text-center text-white">
-              <div class="container p-4 pb-0">
-                <section class="mb-4">
-                  <a class="btn btn-outline-light btn-floating m-1" href="google.com" role="button"
-                    ><i class="bi bi-google"></i></a>
-                  <a class="btn btn-outline-light btn-floating m-1" href="instagram.com" role="button"
-                    ><i class="bi bi-instagram"></i></a>
-                  <a class="btn btn-outline-light btn-floating m-1" href="www.linkedin.com/in/сергей-тарасов-63ba90203/" role="button"
-                    ><i class="bi bi-linkedin"></i></a>
-                  <a class="btn btn-outline-light btn-floating m-1" href="github.com/zarka07" role="button"
-                    ><i class="bi bi-github"></i></a>
-                </section>
-            </div>
-            <div class="text-center p-3" style="background-color: #152733;">
-              © 2022 Copyright:
-              <a class="text-white" href="mailto:zarka08@gmail.com">zarka08@gmail.com</a>
-            </div>
-        </div>
-        </div>
-      </div>
+      
     </div>
 
   </div> 
@@ -105,7 +63,7 @@ export default{
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap');
 
-*, .form-body {
+.form-body {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -113,10 +71,10 @@ export default{
     -moz-osx-font-smoothing: grayscale;
 }
 
-html, .form-body {
+.form-body {
     height: 100%;
     background-color: #152733;
-    /* overflow: hidden;  */
+    overflow-x: hidden; 
     
 }
 
@@ -127,7 +85,7 @@ html, .form-body {
       justify-content: center;
       align-items: center;
       text-align: center;
-      /* min-height: 80vh; */
+      min-height: 100vh;
 }
 
 .form-holder .form-content {
@@ -254,51 +212,18 @@ html, .form-body {
    color: #2acc80;
 }
 
-.left-part{
+.form{
   padding: 0;
 }
 
-.background{
-  background-image: url('@/assets/right-part-bckgrnd.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  /* background-attachment: fixed; */
-  background-size: cover;
-  background-color: #a7a5a5;
-  /* width: 200px; */
-  height:30%;
-}
 
 @media screen and (max-width: 576px) {
 
-.background {
-    display: none;
-}
-}
-
-.lorem{
-  color:#20240d
+  .background {
+      display: none;
+  }
 }
 
-.lorem-img{
-  background-image: url('@/assets/lorem-img.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  /* background-attachment: fixed; */
-  background-size: cover;
-  background-color: #ced114;
-}
 
-.border{
-  border: 4px double black;
-}
 
-.article{
-  border: 2px dotted black;
-  margin-bottom: 3px;
-}
-
-.footer{
-  background-color: #fff;
-}
 </style>

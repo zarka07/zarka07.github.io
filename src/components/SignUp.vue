@@ -37,8 +37,8 @@
                            <div class="col-md-12">
                                 <select class="form-select mt-3" required>
                                     <option selected disabled value="">Gender</option>
-                                    <option value="jweb">Male</option>
-                                    <option value="sweb">Femail</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Femail">Femail</option>
                                </select>
                            </div>
 
@@ -47,7 +47,7 @@
                                     <input class="form-control" 
                                         type="password" 
                                         v-model="password" 
-                                        placeholder="Password" 
+                                        placeholder="Password (at least 8 long)" 
                                         autocomplete ="new-password" 
                                     >
                                     <div class="input-errors" v-for="error of v$.password.$errors" :key="error.$uid">
@@ -149,5 +149,8 @@ export default {
 <style scoped>
     .account{
         color:gold;
+    }
+    .form-content select .form-content input{
+        color:black;
     }
 </style>
