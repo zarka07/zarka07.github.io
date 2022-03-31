@@ -56,7 +56,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-check">
+                            <div class="form-check" style="margin-top:20px">
                                 <div :class="{ error: v$.agree.$errors.length }">
                                     <input class="form-check-input" 
                                         type="checkbox" 
