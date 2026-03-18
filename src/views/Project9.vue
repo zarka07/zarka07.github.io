@@ -119,7 +119,7 @@ const formattedSymbols = computed(() => {
     });
 
 
-    return result.filter(Boolean).join(', ');
+    return result.filter(Boolean).join(', ').replace(/\s*\/\s*/g, ', ');
   
       
           // return input_Text.value
